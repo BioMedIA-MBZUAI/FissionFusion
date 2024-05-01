@@ -1,0 +1,31 @@
+LEARNING_RATE : 1e-3
+LEARNING_SCHEDULER : CosineAnnealingLR
+BATCH_SIZE : 128
+NUM_EPOCHS : 10
+LINEAR_PROBING: False
+PROBING_EPOCHS : 30
+PATIENCE : 4
+
+IMAGE_SIZE : 224
+
+
+MODEL: ResNet18
+PRETRAINED: True
+LOSS: CrossEntropyLoss
+
+CUDA_DEVICE: 0
+
+datasets: &DATASET_OPTIONS
+  - &CIFAR10 Cifar10
+  - &CIFAR100 Cifar100
+  - &RSNA Rsna
+
+NUM_CLASSES: 10 #2 for RSNA, 10 for CIFAR
+DATASET: *CIFAR10
+
+RSNA_PATH: "dataset/rsna_18"
+
+RSNA_CSV: "dataset/rsna_18/csv/final_dataset_wo_not_normal_cases.csv"
+
+
+#source /share/sda/nurenzhaksylyk/SEGA2023/SegaAlgorithm/sega/bin/activate

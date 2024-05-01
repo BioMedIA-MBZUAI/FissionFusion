@@ -1,0 +1,33 @@
+BATCH_SIZE: 128
+CUDA_DEVICE: 0
+IMAGE_SIZE: 224
+NUM_WORKERS: 16
+
+datasets: &DATASET_OPTIONS
+  - &CIFAR10 Cifar10
+  - &CIFAR100 Cifar100
+  - &RSNA Rsna
+  - &HAM HAM
+  - &APTOS APTOS
+  - &CHEXPERT CHEXPERT
+
+paths: &PATH_OPTIONS
+  - &CIFAR_PATH /share/nvmedata/santosh/dataset/cifar""/share/nvmedata/santosh/dataset/cifar/cifar1098_idxs.npy
+  - &RSNA_PATH /share/nvmedata/santosh/dataset/rsna18""/share/nvmedata/santosh/dataset/rsna18/csv/final_dataset_wo_not_normal_cases.csv
+  - &HAM_PATH /share/nvmedata/santosh/dataset/ISIC/ISIC2018_Task3_Training_Input/""/share/nvmedata/santosh/dataset/ISIC/ISIC2018_Task3_Validation_Input/""/share/nvmedata/santosh/dataset/ISIC/ISIC2018_Task3_Test_Input/""/share/nvmedata/santosh/dataset/ISIC/ISIC2018_Task3_Training_GroundTruth/ISIC2018_Task3_Training_GroundTruth.csv""/share/nvmedata/santosh/dataset/ISIC/ISIC2018_Task3_Validation_GroundTruth/ISIC2018_Task3_Validation_GroundTruth.csv""/share/nvmedata/santosh/dataset/ISIC/ISIC2018_Task3_Test_GroundTruth/ISIC2018_Task3_Test_GroundTruth.csv
+  - &APTOS_PATH /share/nvmedata/santosh/dataset/224_data/DR/aptos/""/share/nvmedata/santosh/dataset/224_data/DR/aptos/aptos_dataset_splits.csv
+  - &CHEXPERT_PATH /share/nvmedata/santosh/""/share/nvmedata/santosh/""/share/nvmedata/santosh/""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/train.csv""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/valid.csv""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/test_labels_v2.csv
+
+
+WEIGHT_PATH: "/share/nvmedata/santosh/model_soups/runs/san_final_hyp_models/san-finetune/chexpert_final_hyp/deits_imagenet/2024-01-21_22-05-48/"
+PRETRAINING: ImageNet
+MODEL: DeiT-S
+CLASSIFICATION: MultiLabel
+TASK: Classification
+DATASET: *CHEXPERT
+PATH: *CHEXPERT_PATH
+test_sort_by: Test AUC
+val_sort_by: Val AUC
+LOSS: BCEWithLogitsLoss
+NUM_CLASSES: 13 #2 for RSNA, 10 for CIFAR
+SAVE_PATH: 'val1_val2_val3'

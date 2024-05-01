@@ -1,0 +1,46 @@
+LEARNING_RATE : 1e-3
+LEARNING_SCHEDULER : CosineAnnealingLR
+BATCH_SIZE : 128
+NUM_WORKERS : 16
+NUM_EPOCHS : 45
+LINEAR_PROBING: False
+PROBING_EPOCHS : 30
+PATIENCE : 5
+
+IMAGE_SIZE : 224
+
+
+MODEL: ResNet18
+PRETRAINED: False
+LOSS: CrossEntropyLoss
+
+CUDA_DEVICE: 1
+
+
+RUN_NAME: "./runs/san-initial-models/cifar/2024-01-04_01-45-27/" #CIFAR
+# RUN_NAME: "2023-12-26_21-49-40" #RSNA
+
+
+LR_RATE_LIST: [1e-3, 5e-4 , 1e-4, 5e-5 , 1e-5, 5e-6, 1e-6]
+# NUM_EPOCHS_MINIMAL: [15, 20, 25]
+# NUM_EPOCHS_MEDIUM: [25, 30, 35]
+# NUM_EPOCHS_HEAVY: [35, 40, 45]
+
+SEED: [0,1]
+
+AUGMENT_LIST: [Minimal, Medium, Heavy]
+
+datasets: &DATASET_OPTIONS
+  - &CIFAR10 Cifar10
+  - &CIFAR100 Cifar100
+  - &RSNA Rsna
+
+NUM_CLASSES: 10 #2 for RSNA, 10 for CIFAR
+DATASET: *CIFAR10
+
+RSNA_PATH: "dataset/rsna_18"
+
+RSNA_CSV: "dataset/rsna_18/csv/final_dataset_wo_not_normal_cases.csv"
+SAVE_DIR: "./runs/san-finetune/cifar/"
+#source /share/sda/nurenzhaksylyk/SEGA2023/SegaAlgorithm/sega/bin/activate
+

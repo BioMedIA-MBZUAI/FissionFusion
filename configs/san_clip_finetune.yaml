@@ -1,0 +1,51 @@
+LEARNING_RATE : 1e-3
+LEARNING_SCHEDULER : CosineAnnealingLR
+BATCH_SIZE : 128
+NUM_WORKERS : 16
+NUM_EPOCHS : 10
+LINEAR_PROBING: False
+PROBING_EPOCHS : 30
+PATIENCE : 5
+
+IMAGE_SIZE : 224
+
+
+PRETRAINED: False
+LOSS: CrossEntropyLoss
+
+# RUN_NAME: "2023-12-26_21-49-40" #RSNA
+
+
+LR_RATE_LIST: [3e-5, 2e-5 , 1e-5, 3e-6]
+# NUM_EPOCHS_MINIMAL: [15, 20, 25]
+# NUM_EPOCHS_MEDIUM: [25, 30, 35]
+# NUM_EPOCHS_HEAVY: [35, 40, 45]
+
+SEED: [0,1]
+
+AUGMENT_LIST: [Minimal, Medium, Heavy]
+
+datasets: &DATASET_OPTIONS
+  - &CIFAR10 Cifar10
+  - &CIFAR100 Cifar100
+  - &RSNA Rsna
+
+
+
+RSNA_PATH: "./dataset/rsna18"
+CIFAR_PATH: "./dataset/cifar"
+CIFAR_INDICES: "./dataset/cifar/cifar1098_idxs.npy"
+RSNA_CSV: "./dataset/rsna18/csv/final_dataset_wo_not_normal_cases.csv"
+
+######CHANGE ONLY THIS#########
+SAVE_DIR: "./runs/san_final_hyp_models/san-finetune/cifar_final_hyp/CLIP_wo_mixup/"
+RUN_NAME: "" #CIFAR
+CUDA_DEVICE: 0
+NUM_CLASSES: 10 #2 for RSNA, 10 for CIFAR
+DATASET: *CIFAR10
+MODEL: CLIP
+RESUME_PATH: ""
+
+
+#source /share/sda/nurenzhaksylyk/SEGA2023/SegaAlgorithm/sega/bin/activate
+

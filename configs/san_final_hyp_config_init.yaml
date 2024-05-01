@@ -1,0 +1,58 @@
+LEARNING_SCHEDULER : CosineAnnealingLR
+BATCH_SIZE : 128
+NUM_EPOCHS : 10
+LINEAR_PROBING: False
+PROBING_EPOCHS : 30
+PATIENCE : 10
+NUM_WORKERS : 16
+
+
+
+PRETRAINED: True
+
+
+datasets: &DATASET_OPTIONS
+  - &CIFAR10 Cifar10
+  - &CIFAR100 Cifar100
+  - &RSNA Rsna
+  - &HAM HAM
+  - &APTOS APTOS
+  - &CHEXPERT CHEXPERT
+
+
+# CIFAR_PATH: "./dataset/cifar"
+# CIFAR_INDICES: "./dataset/cifar/cifar1098_idxs.npy"
+# RSNA_PATH: "./dataset/rsna18/"
+# RSNA_CSV: "./dataset/rsna18/csv/final_dataset_wo_not_normal_cases.csv"
+# HAM_TRAIN_FOLDER : "./dataset/ISIC/ISIC2018_Task3_Training_Input/"
+# HAM_VAL_FOLDER : "./dataset/ISIC/ISIC2018_Task3_Validation_Input/"
+# HAM_TEST_FOLDER : "./dataset/ISIC/ISIC2018_Task3_Test_Input/"
+# HAM_TRAIN_CSV : "./dataset/ISIC/ISIC2018_Task3_Training_GroundTruth/ISIC2018_Task3_Training_GroundTruth.csv"
+# HAM_VAL_CSV : "./dataset/ISIC/ISIC2018_Task3_Validation_GroundTruth/ISIC2018_Task3_Validation_GroundTruth.csv"
+# HAM_TEST_CSV : "./dataset/ISIC/ISIC2018_Task3_Test_GroundTruth/ISIC2018_Task3_Test_GroundTruth.csv"
+# APTOS_FOLDER: "./dataset/224_data/DR/aptos/"
+# APTOS_CSV: "./dataset/224_data/DR/aptos/aptos_dataset_splits.csv"
+
+paths: &PATH_OPTIONS
+  - &CIFAR_PATH ./dataset/cifar""./dataset/cifar/cifar1098_idxs.npy
+  - &RSNA_PATH ./dataset/rsna18""./dataset/rsna18/csv/final_dataset_wo_not_normal_cases.csv
+  - &HAM_PATH ./dataset/ISIC/ISIC2018_Task3_Training_Input/""./dataset/ISIC/ISIC2018_Task3_Validation_Input/""./dataset/ISIC/ISIC2018_Task3_Test_Input/""./dataset/ISIC/ISIC2018_Task3_Training_GroundTruth/ISIC2018_Task3_Training_GroundTruth.csv""./dataset/ISIC/ISIC2018_Task3_Validation_GroundTruth/ISIC2018_Task3_Validation_GroundTruth.csv""./dataset/ISIC/ISIC2018_Task3_Test_GroundTruth/ISIC2018_Task3_Test_GroundTruth.csv
+  - &APTOS_PATH ./dataset/224_data/DR/aptos/""./dataset/224_data/DR/aptos/aptos_dataset_splits.csv
+  - &CHEXPERT_PATH /share/nvmedata/santosh/""/share/nvmedata/santosh/""/share/nvmedata/santosh/""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/train.csv""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/valid.csv""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/test_labels_v2.csv
+  - &CIFAR100_PATH ./dataset/cifar""./dataset/cifar/cifar1098_idxs.npy
+
+######CHANGE ONLY THIS#######
+TASK: Classification
+MODEL: DeiT-S
+CLASSIFICATION: MultiClass
+PRETRAINING: ImageNet
+LOSS: CrossEntropyLoss
+LEARNING_RATE : 1e-3
+NUM_EPOCHS : 10
+IMAGE_SIZE : 224
+CUDA_DEVICE: 0
+NUM_CLASSES: 100 #2 for RSNA, 10 for CIFAR
+DATASET: *CIFAR100
+PATH: *CIFAR100_PATH
+SAVE_DIR: "/l/users/nuren.zhaksylyk/"
+#source /share/sda/nurenzhaksylyk/SEGA2023/SegaAlgorithm/sega/bin/activate
