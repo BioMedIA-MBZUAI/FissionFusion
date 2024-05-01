@@ -31,7 +31,6 @@ The scarcity of well-annotated medical datasets requires leveraging transfer lea
     ```bash
     pip install -r requirements.txt
     ```
-
 ## Training Pipeline 
 
 1. Grid Search Experiments
@@ -43,17 +42,12 @@ The scarcity of well-annotated medical datasets requires leveraging transfer lea
         ```bash
         python finetune.py --config './configs/full_finetuning.yaml'
         ```
+
 2. Fast Geometric Generation
     a) For the fast geometric generation experiments, we first get the models for different learning rates fixing the seed = 1 and augmentation = Heavy. We get a total of 8 models.
         ```bash
         python finetune.py --config './configs/pre_fgg_finetuning.yaml'
         ```
-
-
-
-
----
-
 
 ---
 
