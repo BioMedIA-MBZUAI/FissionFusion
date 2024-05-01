@@ -35,7 +35,7 @@ The scarcity of well-annotated medical datasets requires leveraging transfer lea
 ## Training Pipeline 
 
 1. Grid Search Experiments
-    a) To run the grid search experiments, we need to run the linear probing first as a warmup to get the linear-probed model (theta superscript lp). Please change the DATASETS paths, and the implementation section in the corresponding config file (lp.yaml) as per the dataset and model. 
+    a) To run the grid search experiments, we need to run the linear probing first as a warmup to get the linear-probed model (θ<sub>lp</sub>). Please change the DATASETS paths, and the implementation section in the corresponding config file (lp.yaml) as per the dataset and model. 
        
        ```bash
        python train.py --config './configs/lp.yaml'
@@ -54,7 +54,6 @@ The scarcity of well-annotated medical datasets requires leveraging transfer lea
        python finetune.py --config './configs/pre_fgg_finetuning.yaml'
        ```
 ---
-
 ## Contact
 
 For any inquiries or questions, please create an issue on this repository or contact Santosh Sanjeev at santosh.sanjeev@mbzuai.ac.ae.
