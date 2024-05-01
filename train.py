@@ -30,14 +30,14 @@ from utils.utils import load_model
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--config', type=str, default='./configs/san_final_hyp_config_init.yaml', metavar='DIR', help='configs')
+parser.add_argument('--config', type=str, default='./configs/lp.yaml', metavar='DIR', help='configs')
 
 args = parser.parse_args()
 
 
 config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
 print(config)
-run = wandb.init(entity='biomed', project='model_soups', config=config)
+run = wandb.init(entity=config["WANDB_ENTITY"], project=config["WANDB_PROJECT"], config=config)
 
 
 LEARNING_RATE = float(config["LEARNING_RATE"])
@@ -48,32 +48,12 @@ NUM_CLASSES = int(config["NUM_CLASSES"])
 LINEAR_PROBING = config["LINEAR_PROBING"]
 PROBING_EPOCHS = int(config["PROBING_EPOCHS"])
 PATIENCE = int(config["PATIENCE"])
-
 LOSS = config["LOSS"]
-
 IMAGE_SIZE = int(config["IMAGE_SIZE"])
 MODEL = config["MODEL"]
 PRETRAINED = config["PRETRAINED"]
-
 NUM_WORKERS = int(config["NUM_WORKERS"])
-
-
 DATASET = config["DATASET"]
-# RSNA_CSV = config["RSNA_CSV"]
-# RSNA_PATH = config["RSNA_PATH"]
-# CIFAR_PATH = config["CIFAR_PATH"]
-# CIFAR_INDICES = config["CIFAR_INDICES"]
-
-# HAM_TRAIN_CSV = str(config["HAM_TRAIN_CSV"])
-# HAM_VAL_CSV = str(config["HAM_VAL_CSV"])
-# HAM_TEST_CSV = str(config["HAM_TEST_CSV"])
-# HAM_TRAIN_FOLDER = str(config["HAM_TRAIN_FOLDER"])
-# HAM_VAL_FOLDER = str(config["HAM_VAL_FOLDER"])
-# HAM_TEST_FOLDER = str(config["HAM_TEST_FOLDER"])
-
-
-# APTOS_CSV = str(config["APTOS_CSV"])
-# APTOS_FOLDER = str(config["APTOS_FOLDER"])
 TASK = config["TASK"]
 PATHS = config["PATH"]
 CLASSIFICATION = config["CLASSIFICATION"]
@@ -177,6 +157,11 @@ def main():
 
     test_loss, test_acc, test_f1, test_recall, test_kappa, test_auc = val_step(model, test_loader, train_loader=train_loader, loss_fn=loss, device = DEVICE, classification = CLASSIFICATION)
     print(test_loss, test_acc, test_f1, test_recall, test_kappa, test_auc)
+    if CLASSIFICATION == 'MultiClass':
+        print(f"Test Loss: {test_loss:.4f}, Test Acc: {test_acc:.4f}, Test F1: {test_f1:.4f}, Test recall: {test_recall:.4f}, Test Kappa: {test_kappa:.4f}")
+    else:
+        print(f"Test Loss: {test_loss:.4f}, Test AUC: {test_auc:.4f}")
+
     config["test_acc"] = test_acc
     config["test_loss"] = test_loss
     config["test_f1"] = test_f1

@@ -2,13 +2,13 @@
 
 **Authors**: Santosh Sanjeev, Nuren Zhaksylyk, Ibrahim Almakky, Anees Ur Rehman Hashmi, Mohammad Areeb Qazi, Mohammad Yaqub
 
----
-
+[![Paper](https://img.shields.io/badge/Paper-Link-blue)](https://arxiv.org/abs/2403.13341)
+[![Slides](https://img.shields.io/badge/Slides-Link-green)](https://mbzuaiac-my.sharepoint.com/:p:/g/personal/santosh_sanjeev_mbzuai_ac_ae/EecfRMTQnE9Kl1GfBnkpNPEBRK3nTGtSh8_egySSlt2Eug?e=3ogVQu)
 
 ---
 ## Overview
 
-Welcome to the repository for "FissionFusion: Fast Geometric Generation and Hierarchical Souping for Medical Image Analysis". This paper introduces an innovative approach to enhance the robustness of volumetric medical image segmentation models against adversarial attacks. We propose a novel frequency domain adversarial training method and demonstrate its effectiveness compared to traditional input or voxel domain attacks.
+Welcome to the repository for "FissionFusion: Fast Geometric Generation and Hierarchical Souping for Medical Image Analysis". This paper introduces the limitations of model soups and introduces an innovative approach towards generation and merging of models. 
 
 ## Abstract
 
@@ -22,8 +22,8 @@ The scarcity of well-annotated medical datasets requires leveraging transfer lea
 1. Create a conda environment:
 
     ```bash
-    conda create --name vafa python=3.8
-    conda activate vafa
+    conda create --name fissionfusion python=3.8
+    conda activate fissionfusion
     ```
 
 2. Install PyTorch and other dependencies:
@@ -32,11 +32,28 @@ The scarcity of well-annotated medical datasets requires leveraging transfer lea
     pip install -r requirements.txt
     ```
 
+## Training Pipeline 
+
+1. Grid Search Experiments
+    a) To run the grid search experiments, we need to run the linear probing first as a warmup to get the linear-probed model (theta superscript lp). Please change the DATASETS paths, and the implementation section in the corresponding config file (lp.yaml) as per the dataset and model. 
+        ```bash
+        python train.py --config './configs/lp.yaml'
+        ```
+    b) To run the finetuning stage (which returns 48 models for the hyperparameter settings)
+        ```bash
+        python finetune.py --config './configs/full_finetuning.yaml'
+        ```
+2. Fast Geometric Generation
+    a) For the fast geometric generation experiments, we first get the models for different learning rates fixing the seed = 1 and augmentation = Heavy. We get a total of 8 models.
+        ```bash
+        python finetune.py --config './configs/pre_fgg_finetuning.yaml'
+        ```
+
+
+
+
 ---
 
-
-[![Paper](https://img.shields.io/badge/Paper-Link-blue)](https://arxiv.org/abs/2403.13341)
-[![Slides](https://img.shields.io/badge/Slides-Link-green)](link_to_slides)
 
 ---
 

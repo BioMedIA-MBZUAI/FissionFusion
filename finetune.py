@@ -31,12 +31,12 @@ from utils.utils import load_model
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--config', type=str, default='./configs/san_config_finetune.yaml', metavar='DIR', help='configs')
+parser.add_argument('--config', type=str, default='./configs/full_finetuning.yaml', metavar='DIR', help='configs')
 args = parser.parse_args()
 
 config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)
 print(config)
-run = wandb.init(entity='biomed', project='model_soups', config=config)
+run = wandb.init(entity=config["WANDB_ENTITY"], project=config["WANDB_PROJECT"], config=config)
 
 
 wandconf = {
@@ -58,38 +58,15 @@ BATCH_SIZE = int(config["BATCH_SIZE"])
 NUM_EPOCHS = int(config["NUM_EPOCHS"])
 NUM_CLASSES = int(config["NUM_CLASSES"])
 LINEAR_PROBING = config["LINEAR_PROBING"]
-# PROBING_EPOCHS = int(config["PROBING_EPOCHS"])
 PATIENCE = int(config["PATIENCE"])
 SAVE_DIR = str(config["SAVE_DIR"])
-
 LR_RATE_LIST = config["LR_RATE_LIST"]
 SEED_LIST = config['SEED']
 CLASSIFICATION = config["CLASSIFICATION"]
-# NUM_EPOCHS_MINIMAL = config["NUM_EPOCHS_MINIMAL"]
-# NUM_EPOCHS_MEDIUM = config["NUM_EPOCHS_MEDIUM"]
-# NUM_EPOCHS_HEAVY = config["NUM_EPOCHS_HEAVY"]
-
 PATHS = config["PATH"]
 AUGMENT_LIST = config["AUGMENT_LIST"]
-
 DATASET = config["DATASET"]
-# RSNA_CSV = config["RSNA_CSV"]
-# RSNA_PATH = config["RSNA_PATH"]
-# CIFAR_PATH = config["CIFAR_PATH"]
-# CIFAR_INDICES = config["CIFAR_INDICES"]
-# HAM_TRAIN_CSV = str(config["HAM_TRAIN_CSV"])
-# HAM_VAL_CSV = str(config["HAM_VAL_CSV"])
-# HAM_TEST_CSV = str(config["HAM_TEST_CSV"])
-# HAM_TRAIN_FOLDER = str(config["HAM_TRAIN_FOLDER"])
-# HAM_VAL_FOLDER = str(config["HAM_VAL_FOLDER"])
-# HAM_TEST_FOLDER = str(config["HAM_TEST_FOLDER"])
-
-
-# APTOS_CSV = str(config["APTOS_CSV"])
-# APTOS_FOLDER = str(config["APTOS_FOLDER"])
-
 LOSS = config["LOSS"]
-
 IMAGE_SIZE = int(config["IMAGE_SIZE"])
 MODEL = config["MODEL"]
 PRETRAINED = config["PRETRAINED"]
@@ -167,7 +144,6 @@ def main():
         latest_checkpoint = torch.load(os.path.join(latest_dir, 'last_checkpoint.pth'), map_location=DEVICE)
         hyp_ls = hyp_ls[idx:]
 
-
     print(hyp_ls)
     print('################################ LEN OF HY_LS #####################', len(hyp_ls))
     for idx, hyperparameters in enumerate(hyp_ls):
@@ -212,7 +188,8 @@ def main():
         if RESUME_PATH !="":
             RESUME_PATH = ""
             print(latest_checkpoint['epoch'])
-            if latest_checkpoint['epoch']!=50:
+            print(latest_dir, os.listdir(latest_dir))
+            if 'train_summary.json' not in os.listdir(latest_dir):
                 start_epoch=0
             else:
                 continue
@@ -245,7 +222,10 @@ def main():
         torch.compile(model)
 
         test_loss, test_acc, test_f1, test_recall, test_kappa, test_auc = val_step(model, test_loader, train_loader=train_loader, loss_fn=loss, device = DEVICE, classification = CLASSIFICATION)
-        print(test_loss, test_acc, test_f1, test_recall, test_kappa, test_auc)
+        if CLASSIFICATION == 'MultiClass':
+            print(f"Test Loss: {test_loss:.4f}, Test Acc: {test_acc:.4f}, Test F1: {test_f1:.4f}, Test recall: {test_recall:.4f}, Test Kappa: {test_kappa:.4f}")
+        else:
+            print(f"Test Loss: {test_loss:.4f}, Test AUC: {test_auc:.4f}")
         wandb.log({"test_loss": test_loss, "test_acc": test_acc})
 
         config["test_acc"] = test_acc

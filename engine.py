@@ -161,7 +161,7 @@ def train_step(
         train_acc /= len(train_loader)
         train_macro_f1 = f1_score(train_targets, train_predictions, average='macro')
         train_macro_recall = recall_score(train_targets, train_predictions, average='macro')
-        train_auc = roc_auc_score(train_targets, train_predictions, multi_class='ovr', average = 'weighted')
+        train_auc = None
 
     else:
         for task in range(len(task_targets)):
@@ -245,7 +245,7 @@ def val_step(
             val_macro_f1 = f1_score(val_targets, val_predictions, average='macro')
             val_macro_recall = recall_score(val_targets, val_predictions, average='macro')
             val_kappa = cohen_kappa_score(val_targets,val_predictions, weights = 'quadratic')
-            val_auc = 0#roc_auc_score(val_targets, val_predictions, multi_class='ovr', average = 'weighted')
+            val_auc = None
         else:
             for task in range(len(task_targets)):
                 task_outputs[task] = np.concatenate(task_outputs[task])
@@ -331,9 +331,11 @@ def trainer(
         #             param.requires_grad = True
         print(f"Epoch {epoch}:")
         train_loss, train_acc, train_macro_f1, train_macro_recall, train_kappa, train_auc = train_step(model, train_loader, loss_fn, optimizer, device, classification)
-        print(f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}, Train F1: {train_macro_f1:.4f}, Train recall: {train_macro_recall:.4f}, Train Kappa: {train_kappa:.4f}, Train AUC: {train_auc:.4f}")
+        if classification == 'MultiClass':
+            print(f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}, Train F1: {train_macro_f1:.4f}, Train recall: {train_macro_recall:.4f}, Train Kappa: {train_kappa:.4f}")
+        else:
+            print(f"Train Loss: {train_loss:.4f}, Train AUC: {train_auc:.4f}")
 
-        
 
         results["train_loss"].append(train_loss)
         results["train_acc"].append(train_acc)
@@ -343,7 +345,13 @@ def trainer(
         results["train_auc"].append(train_auc)
 
         val_loss, val_acc, val_f1, val_recall, val_kappa, val_auc = val_step(model, val_loader, train_loader, loss_fn, device, classification)
-        print(f"Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}, Val F1: {val_f1:.4f}, Val recall: {val_recall:.4f}, Val Kappa: {val_kappa:.4f}, Val AUC: {val_auc:.4f}")
+        if classification == 'MultiClass':
+            print(f"Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}, Val F1: {val_f1:.4f}, Val recall: {val_recall:.4f}, Val Kappa: {val_kappa:.4f}")
+        else:
+            print(f"Val Loss: {val_loss:.4f}, Val AUC: {val_auc:.4f}")
+            
+
+
         print()
 
         if lr_scheduler_name == "ReduceLROnPlateau":

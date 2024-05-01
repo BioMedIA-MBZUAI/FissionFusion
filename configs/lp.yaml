@@ -41,18 +41,23 @@ paths: &PATH_OPTIONS
   - &CHEXPERT_PATH /share/nvmedata/santosh/""/share/nvmedata/santosh/""/share/nvmedata/santosh/""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/train.csv""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/valid.csv""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/test_labels_v2.csv
   - &CIFAR100_PATH ./dataset/cifar""./dataset/cifar/cifar1098_idxs.npy
 
+
+
+
+# IMPLEMENTATION SECTION #
 ######CHANGE ONLY THIS#######
 TASK: Classification
-MODEL: DeiT-S
-CLASSIFICATION: MultiClass
+MODEL: DeiT-S #change the model here (DeiT-S, ResNet50)
+CLASSIFICATION: MultiClass #if chexpert change to MultiLabel
 PRETRAINING: ImageNet
-LOSS: CrossEntropyLoss
+LOSS: CrossEntropyLoss #if CheXpert change to BCEWithLogitsLoss()
 LEARNING_RATE : 1e-3
 NUM_EPOCHS : 10
 IMAGE_SIZE : 224
 CUDA_DEVICE: 0
-NUM_CLASSES: 100 #2 for RSNA, 10 for CIFAR
-DATASET: *CIFAR100
+NUM_CLASSES: 100
+DATASET: *CIFAR100 #give the path as above
 PATH: *CIFAR100_PATH
-SAVE_DIR: "/l/users/nuren.zhaksylyk/"
-#source /share/sda/nurenzhaksylyk/SEGA2023/SegaAlgorithm/sega/bin/activate
+SAVE_DIR: "./runs/LPFT/CIFAR100/" #give the path for saving the models
+WANDB_ENTITY: "biomed"
+WANDB_PROJECT: "model_soups"

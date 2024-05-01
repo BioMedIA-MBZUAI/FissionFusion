@@ -4,22 +4,14 @@ NUM_WORKERS : 16
 LINEAR_PROBING: False
 PROBING_EPOCHS : 30
 PATIENCE : 8
-
 IMAGE_SIZE : 224
-
-
 PRETRAINED: False
 
-# RUN_NAME: "2023-12-26_21-49-40" #RSNA
+
 
 
 LR_RATE_LIST: [1e-3, 5e-4 , 1e-4, 5e-5 , 1e-5, 5e-6, 1e-6, 1e-7]
-# NUM_EPOCHS_MINIMAL: [15, 20, 25]
-# NUM_EPOCHS_MEDIUM: [25, 30, 35]
-# NUM_EPOCHS_HEAVY: [35, 40, 45]
-
 SEED: [0,1]
-
 AUGMENT_LIST: [Minimal, Medium, Heavy]
 
 datasets: &DATASET_OPTIONS
@@ -55,21 +47,26 @@ paths: &PATH_OPTIONS
 
 
 
-######CHANGE ONLY THIS#########
-LOSS: BCEWithLogitsLoss
-NUM_EPOCHS : 50
+# IMPLEMENTATION SECTION #
+######CHANGE ONLY THIS#######
 TASK: Classification
+MODEL: DeiT-S #change the model here (DeiT-S, ResNet50)
+CLASSIFICATION: MultiClass #if chexpert change to MultiLabel
 PRETRAINING: ImageNet
-CLASSIFICATION: MultiLabel
+LOSS: CrossEntropyLoss #if CheXpert change to BCEWithLogitsLoss()
+LEARNING_RATE : 1e-3
 LEARNING_SCHEDULER : CosineAnnealingLR
-SAVE_DIR: "/share/nvmedata/santosh/model_soups/runs/san_final_hyp_models/san-finetune/chexpert_final_hyp/deits_imagenet/"
-RUN_NAME: "./runs/san_final_hyp_models/san-initial_models/chexpert_final_hyp/deits_imagenet/2024-01-16_21-06-28/" #CIFAR
+NUM_EPOCHS : 50
+IMAGE_SIZE : 224
 CUDA_DEVICE: 0
-NUM_CLASSES: 13 #2 for RSNA, 10 for CIFAR
-DATASET: *CHEXPERT
-MODEL: DeiT-S
-PATH: *CHEXPERT_PATH
-RESUME_PATH: "/share/nvmedata/santosh/model_soups/runs/san_final_hyp_models/san-finetune/chexpert_final_hyp/deits_imagenet/2024-01-21_22-05-48/"
+NUM_CLASSES: 100
+DATASET: *CIFAR100 #give the path as above
+PATH: *CIFAR100_PATH
+SAVE_DIR: "./runs/FT/CIFAR100/" #give the path for saving the models
+WANDB_ENTITY: "biomed"
+WANDB_PROJECT: "model_soups"
+RUN_NAME: "./runs/LPFT/CIFAR100/2024-05-02_01-09-53/best_checkpoint.pth" #give the name of the LP checkpoint
+RESUME_PATH: "" #to resume finetuning give the path of the current folder where all the models are saved
 
-#source /share/sda/nurenzhaksylyk/SEGA2023/SegaAlgorithm/sega/bin/activate
+  
 
