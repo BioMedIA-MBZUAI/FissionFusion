@@ -31,6 +31,7 @@ The scarcity of well-annotated medical datasets requires leveraging transfer lea
     ```bash
     pip install -r requirements.txt
     ```
+````markdown
 ## Training Pipeline 
 
 1. Grid Search Experiments
@@ -48,6 +49,7 @@ The scarcity of well-annotated medical datasets requires leveraging transfer lea
         ```bash
         python finetune.py --config './configs/pre_fgg_finetuning.yaml'
         ```
+
 
 ---
 
