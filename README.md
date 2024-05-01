@@ -34,7 +34,7 @@ The scarcity of well-annotated medical datasets requires leveraging transfer lea
 ---
 ## Training Pipeline 
 
-1. Grid Search Experiments
+1. ### Grid Search Experiments:
     a) To run the grid search experiments, we need to run the linear probing first as a warmup to get the linear-probed model (θ<sub>lp</sub>). Please change the DATASETS paths, and the implementation section in the corresponding config file (lp.yaml) as per the dataset and model. 
        
        ```bash
@@ -47,7 +47,7 @@ The scarcity of well-annotated medical datasets requires leveraging transfer lea
        python finetune.py --config './configs/full_finetuning.yaml'
        ```
 
-2. Fast Geometric Generation
+2. ### Fast Geometric Generation: 
     a) For the fast geometric generation experiments, we first get the models for different learning rates fixing the seed = 1 and augmentation = Heavy. We get a total of 8 models.
        
        ```bash
