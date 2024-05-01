@@ -35,24 +35,24 @@ The scarcity of well-annotated medical datasets requires leveraging transfer lea
 ## Training Pipeline 
 
 1. ### Grid Search Experiments:
-    a) To run the grid search experiments, we need to run the linear probing first as a warmup to get the linear-probed model (θ<sub>lp</sub>). Please change the DATASETS paths, and the implementation section in the corresponding config file (lp.yaml) as per the dataset and model. 
+    a) To run the grid search experiments, we need to run the linear probing first as a warmup to get the linear-probed model (θ<sub>lp</sub>). Please change the DATASETS paths, and the implementation section in the corresponding config file as per the dataset and model. 
        
-       ```bash
-       python train.py --config './configs/lp.yaml'
-       ```
+    ```bash
+    python train.py --config './configs/lp.yaml'
+    ```
 
     b) To run the finetuning stage (which returns 48 models for the hyperparameter settings)
        
-       ```bash
-       python finetune.py --config './configs/full_finetuning.yaml'
-       ```
+    ```bash
+    python finetune.py --config './configs/full_finetuning.yaml'
+    ```
 
 2. ### Fast Geometric Generation: 
     a) For the fast geometric generation experiments, we first get the models for different learning rates fixing the seed = 1 and augmentation = Heavy. We get a total of 8 models.
        
-       ```bash
-       python finetune.py --config './configs/pre_fgg_finetuning.yaml'
-       ```
+    ```bash
+    python finetune.py --config './configs/pre_fgg_finetuning.yaml'
+    ```
 ---
 ## Contact
 
