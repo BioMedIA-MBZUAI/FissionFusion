@@ -25,10 +25,10 @@
 ## Contents
 
 1) [Overview](#overview)
-2) [Installation](#installation🔧)
-3) [Training Pipeline](#trainingpipeline)
+2) [Setup](#setup)
+3) [Training Pipeline](#training)
 4) [Inference](#inference)
-4) [Dataset](#dataset)
+4) [Datasets](#datasets)
 6) [Citation](#citation)
 7) [References](#references)
 8) [Contact](#contact)
@@ -40,7 +40,7 @@ Welcome to the repository for "FissionFusion: Fast Geometric Generation and Hier
 ![Fast Geometric Generation and Hierarchical Souping](assets/methodology_ff.png)
 
 ---
-## Installation 🔧
+## Setup
 
 1. Clone the repository:
     ```bash
@@ -60,7 +60,7 @@ Welcome to the repository for "FissionFusion: Fast Geometric Generation and Hier
     pip install -r requirements.txt
     ```
 ---
-## Training Pipeline 
+## Training 
 
 1. ### Grid Search Experiments:
     a) To run the grid search experiments, we need to run the linear probing first as a warmup to get the linear-probed model (θ<sub>lp</sub>). Please change the DATASETS paths, and the implementation section in the corresponding config file as per the dataset and model. 
@@ -103,6 +103,8 @@ Welcome to the repository for "FissionFusion: Fast Geometric Generation and Hier
     python fgg_model_souping_test.py --config './configs/fgg_model_souping_test.yaml'
     ```
 
+---
+## Datasets
 
 
 ---
@@ -121,9 +123,6 @@ If you use **Fission-Fusion** or our repository in your research, please cite ou
       primaryClass={cs.CV}
 }
 ```
----
-
-
 ---
 ## References
 
