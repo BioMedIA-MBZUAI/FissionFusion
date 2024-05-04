@@ -31,7 +31,7 @@ from utils.utils import load_model
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--config', type=str, default='./configs/full_finetuning.yaml', metavar='DIR', help='configs')
+parser.add_argument('--config', type=str, default='./configs/pre_fgg_finetuning.yaml', metavar='DIR', help='configs')
 args = parser.parse_args()
 
 config = yaml.load(open(args.config, 'r'), Loader=yaml.FullLoader)

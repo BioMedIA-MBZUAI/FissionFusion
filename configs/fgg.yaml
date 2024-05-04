@@ -1,18 +1,8 @@
-LEARNING_RATE : 1e-3
-BATCH_SIZE : 128
-NUM_WORKERS : 16
-LINEAR_PROBING: False
-PROBING_EPOCHS : 30
-PATIENCE : 8
-IMAGE_SIZE : 224
-PRETRAINED: False
+BATCH_SIZE: 128
+CUDA_DEVICE: 0
+IMAGE_SIZE: 224
+NUM_WORKERS: 16
 
-
-
-
-LR_RATE_LIST: [1e-3, 5e-4 , 1e-4, 5e-5 , 1e-5, 5e-6, 1e-6, 1e-7]
-SEED: [1]
-AUGMENT_LIST: [Heavy]
 
 datasets: &DATASET_OPTIONS
   - &CIFAR10 Cifar10
@@ -21,6 +11,12 @@ datasets: &DATASET_OPTIONS
   - &HAM HAM
   - &APTOS APTOS
   - &CHEXPERT CHEXPERT
+  - &FGVC_v1 FGVC_v1
+  - &FGVC_v2 FGVC_v2
+  - &MNIST MNIST
+  - &EYEPACS EYEPACS
+
+
 RSNA_PATH: "./dataset/rsna18"
 CIFAR_PATH: "./dataset/cifar"
 CIFAR_INDICES: "./dataset/cifar/cifar1098_idxs.npy"
@@ -34,6 +30,7 @@ HAM_TEST_CSV : "./dataset/ISIC/ISIC2018_Task3_Test_GroundTruth/ISIC2018_Task3_Te
 APTOS_FOLDER: "./dataset/224_data/DR/aptos/"
 APTOS_CSV: "./dataset/224_data/DR/aptos/aptos_dataset_splits.csv"
 #source /share/sda/nurenzhaksylyk/SEGA2023/SegaAlgorithm/sega/bin/activate
+
 paths: &PATH_OPTIONS
   - &CIFAR_PATH ./dataset/cifar""./dataset/cifar/cifar1098_idxs.npy
   - &RSNA_PATH ./dataset/rsna18""./dataset/rsna18/csv/final_dataset_wo_not_normal_cases.csv
@@ -41,32 +38,26 @@ paths: &PATH_OPTIONS
   - &APTOS_PATH ./dataset/224_data/DR/aptos/""./dataset/224_data/DR/aptos/aptos_dataset_splits.csv
   - &CHEXPERT_PATH /share/nvmedata/santosh/""/share/nvmedata/santosh/""/share/nvmedata/santosh/""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/train.csv""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/valid.csv""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/test_labels_v2.csv
   - &CIFAR100_PATH ./dataset/cifar""./dataset/cifar/cifar1098_idxs.npy
+  - &FGVC_v1_PATH ./dataset/fgvc
+  - &FGVC_v2_PATH ./dataset/fgvc/""./dataset/fgvc/fgvc_train_val.npy
+  - &MNIST_PATH ./dataset/mnist/""./dataset/mnist/mnist_train_val.npy
+  - &EYEPACS_PATH ./dataset/224_data/DR/eyepacs/""./dataset/224_data/DR/eyepacs/eyepacs_dataset_splits.csv
 
 
-
-
-
-
-# IMPLEMENTATION SECTION #
-######CHANGE ONLY THIS#######
-TASK: Classification
-MODEL: ResNet50 #change the model here (DeiT-S, ResNet50)
-CLASSIFICATION: MultiClass #if chexpert change to MultiLabel
+WEIGHT_PATH: "./runs/pre_fgg/CIFAR100/2024-05-03_16-05-22" # Give the path to initial set of models
 PRETRAINING: ImageNet
-LOSS: CrossEntropyLoss #if CheXpert change to BCEWithLogitsLoss()
-LEARNING_RATE : 1e-3
-LEARNING_SCHEDULER : CosineAnnealingLR
-NUM_EPOCHS : 50
-IMAGE_SIZE : 224
-CUDA_DEVICE: 0
-NUM_CLASSES: 100
-DATASET: *CIFAR100 #give the path as above
+MODEL: ResNet50
+CLASSIFICATION: MultiClass
+TASK: Classification
+DATASET: *CIFAR100
 PATH: *CIFAR100_PATH
-SAVE_DIR: "./runs/pre_fgg/CIFAR100/" #give the path for saving the models
-WANDB_ENTITY: "biomed"
-WANDB_PROJECT: "model_soups"
-RUN_NAME: "./runs/LPFT/CIFAR100/2024-05-03_15-53-40/" #give the name of the LP folder
-RESUME_PATH: "" #to resume finetuning give the path of the current folder where all the models are saved
-
-  
-
+test_sort_by: Test Accuracy
+val_sort_by: Val Accuracy
+LOSS: CrossEntropyLoss
+NUM_CLASSES: 100 #2 for RSNA, 10 for CIFAR
+LR1: 0.001
+LR2: 0.000001
+WD: 0.0001
+MOMENTUM: 0.9
+CYCLE: 4
+FGG_SAVE_DIR: "/share/nvmedata/santosh/" #give the directory where you want to save the fgg_generated models
