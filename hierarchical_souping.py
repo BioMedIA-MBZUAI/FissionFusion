@@ -118,7 +118,7 @@ for idx, folder in enumerate(sorted(os.listdir(WEIGHT_PATH_FGG))):
     for idx, model in enumerate(sorted(os.listdir(lr_folder))):
         if model.endswith('csv') or model.endswith('txt'):
             continue
-        if model not in ['fgg-0.pt', 'fgg-1.pt']:#, 'fgg-5.pt', 'fgg-9.pt', 'fgg-13.pt', 'fgg-17.pt']:
+        if model not in ['fgg-0.pt', 'fgg-1.pt', 'fgg-5.pt', 'fgg-9.pt', 'fgg-13.pt', 'fgg-17.pt']:
             continue
         print(f">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>{model}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
         checkpoint = torch.load(os.path.join(lr_folder, model), map_location=DEVICE)
