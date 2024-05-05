@@ -91,7 +91,7 @@ Welcome to the repository for "FissionFusion: Fast Geometric Generation and Hier
 
 ## Inference
 1. ### Model Soups (Uniform and Greedy Soups):
-    a) To run uniform and greedy soups on the Grid Search generated models, execute
+    a) To run uniform and greedy soups on the Grid Search (GS) generated models, execute
 
     ```bash
     python gs_model_souping_test.py --config './configs/gs_model_souping_test.yaml'
@@ -103,7 +103,7 @@ Welcome to the repository for "FissionFusion: Fast Geometric Generation and Hier
     python fgg_model_souping_test.py --config './configs/fgg_model_souping_test.yaml'
     ```
 
-    c) To test the Hierarchical souping approach, run
+    c) To test the Hierarchical Souping (HS) approach, run
 
     ```bash
     python hierarchical_souping.py --config './configs/hierarchical_souping.yaml'
