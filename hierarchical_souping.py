@@ -236,8 +236,6 @@ final_test_df = pd.concat([uniform_test_df, greedy_test_df])
 
 
 #GREEDY OF UNIFORM (GoU)
-breakpoint()
-
 u_results = list(uniform_val_df[val_sort_by])
 u_models = list(uniform_val_df["Model Name"])
 greedy_model, best_ingredients = greedy_souping(uniform_models, u_results, MODEL, NUM_CLASSES, val_loader,train_loader, loss, DEVICE , CLASSIFICATION, val_sort_by, val_models = u_models)
