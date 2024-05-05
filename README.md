@@ -2,7 +2,7 @@
 
 **Authors**: 
 [Santosh Sanjeev](https://github.com/santosh9sanjeev),
-[Nuren Zhaksylyk](https://github.com/ZhNuren)
+[Nuren Zhaksylyk](https://github.com/ZhNuren),
 [Ibrahim Almakky](https://scholar.google.com/citations?user=T9MTcK0AAAAJ&hl=en&oi=sra),
 [Anees Ur Rehman Hashmi](https://github.com/aneesurhashmi),
 [Mohammad Areeb Qazi](https://scholar.google.com/citations?user=KeyK8FQAAAAJ&hl=en),
@@ -76,7 +76,7 @@ Welcome to the repository for "FissionFusion: Fast Geometric Generation and Hier
     ```
 
 2. ### Fast Geometric Generation: 
-    a) For the fast geometric generation experiments, we first get the models for different learning rates fixing the seed = 1 and augmentation = Heavy. We get a total of 8 models.
+    a) For the fast geometric generation experiments, we first get the models for different learning rates fixing the seed = 1 and augmentation = Heavy. We get 6 models for each learning rate including the initial model.
        
     ```bash
     python finetune.py --config './configs/pre_fgg_finetuning.yaml'
@@ -103,6 +103,13 @@ Welcome to the repository for "FissionFusion: Fast Geometric Generation and Hier
     python fgg_model_souping_test.py --config './configs/fgg_model_souping_test.yaml'
     ```
 
+    c) To test the Hierarchical souping approach, run
+
+    ```bash
+    python hierarchical_souping.py --config './configs/hierarchical_souping.yaml'
+    ```
+
+
 ---
 ## Datasets
 
@@ -125,10 +132,10 @@ If you use **Fission-Fusion** or our repository in your research, please cite ou
 ```
 ---
 ## References
+Our work is based on
 
-
----
-
+- [Model Soups](https://proceedings.mlr.press/v162/wortsman22a/wortsman22a.pdf)
+- [DNN Mode Connectivity](https://arxiv.org/abs/1802.10026)
 
 ---
 ## Contact

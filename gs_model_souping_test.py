@@ -169,12 +169,12 @@ greedy_model, best_ingredients = greedy_souping(state_dicts, val_results, MODEL,
 greedy_model.to(DEVICE)
 print('VAL INGREDIENTS',best_ingredients)
 greedy_test_loss, greedy_test_acc, greedy_test_f1, greedy_test_recall, greedy_test_kappa, greedy_test_auc = val_step(greedy_model, test_loader, train_loader, loss, DEVICE, CLASSIFICATION)
-test_results = list(results_test_df[test_sort_by])
-test_models = list(results_test_df["Model Name"])
-greedy_model_test, best_ingredients_test = greedy_souping(state_dicts, test_results, MODEL, NUM_CLASSES, test_loader, train_loader, loss, DEVICE, CLASSIFICATION, test_sort_by, test_models)
-print('TEST INGREDIENTS', best_ingredients_test)
-greedy_model_test.to(DEVICE)
-greedy_test_loss_test, greedy_test_acc_test, greedy_test_f1_test, greedy_test_recall_test, greedy_test_kappa_test, greedy_test_auc_test = val_step(greedy_model_test, test_loader, train_loader, loss, DEVICE, CLASSIFICATION)
+# test_results = list(results_test_df[test_sort_by])
+# test_models = list(results_test_df["Model Name"])
+# greedy_model_test, best_ingredients_test = greedy_souping(state_dicts, test_results, MODEL, NUM_CLASSES, test_loader, train_loader, loss, DEVICE, CLASSIFICATION, test_sort_by, test_models)
+# print('TEST INGREDIENTS', best_ingredients_test)
+# greedy_model_test.to(DEVICE)
+# greedy_test_loss_test, greedy_test_acc_test, greedy_test_f1_test, greedy_test_recall_test, greedy_test_kappa_test, greedy_test_auc_test = val_step(greedy_model_test, test_loader, train_loader, loss, DEVICE, CLASSIFICATION)
 
 #saving results in table
 print("Creating table ...")

@@ -3,4 +3,3 @@ runs/
 wandb/
 __pycache__/
 test/
-figures/

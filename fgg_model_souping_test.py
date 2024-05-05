@@ -32,7 +32,7 @@ import sys
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--config', type=str, default='./configs/ood.yaml', metavar='DIR', help='configs')
+parser.add_argument('--config', type=str, default='./configs/fgg_model_souping_test.yaml', metavar='DIR', help='configs')
 
 args = parser.parse_args()
 
@@ -43,7 +43,7 @@ DATASET = config["DATASET"]
 CUDA_DEVICE = int(config["CUDA_DEVICE"])
 NUM_WORKERS = int(config["NUM_WORKERS"])
 PRETRAINING = str(config["PRETRAINING"])
-WEIGHT_PATH_FGE = config["WEIGHT_PATH_FGE"]
+WEIGHT_PATH_FGG = config["WEIGHT_PATH_FGG"]
 BATCH_SIZE = int(config["BATCH_SIZE"])
 NUM_CLASSES = int(config["NUM_CLASSES"])
 IMAGE_SIZE = int(config["IMAGE_SIZE"])
@@ -64,13 +64,13 @@ if not os.path.exists("test"):
     os.makedirs("test")
 
 #if there is no folder named after dataset inside test directory create it
-if not os.path.exists(os.path.join("test", "fge", DATASET, MODEL)):
-    os.makedirs(os.path.join("test", "fge", DATASET, MODEL))
+if not os.path.exists(os.path.join("test", "fgg", DATASET, MODEL)):
+    os.makedirs(os.path.join("test", "fgg", DATASET, MODEL))
 
-test_save_path = os.path.join("test", "fge", DATASET, MODEL)
+test_save_path = os.path.join("test", "fgg", DATASET, MODEL)
 
 # # Open a text file for logging
-log_file_path = os.path.join("test", "fge", DATASET, MODEL, "output_log.txt")
+log_file_path = os.path.join("test", "fgg", DATASET, MODEL, "output_log.txt")
 log_file = open(log_file_path, "w")
 
 # Redirect the standard output to the log file
@@ -92,24 +92,24 @@ elif LOSS == "BCEWithLogitsLoss":
     loss = torch.nn.BCEWithLogitsLoss()
 
 results = {}
-fge_cifar_acc = []
-fge_cifar10_1_acc = []
+fgg_cifar_acc = []
+fgg_cifar10_1_acc = []
 state_dicts = []
 val_results = []
 test_results = []
 value = 0
 
-for idx, folder in enumerate(sorted(os.listdir(WEIGHT_PATH_FGE))):
+for idx, folder in enumerate(sorted(os.listdir(WEIGHT_PATH_FGG))):
     if folder.endswith('csv') or folder.endswith('txt'):
         continue
-    lr_folder = os.path.join(WEIGHT_PATH_FGE, folder)
+    lr_folder = os.path.join(WEIGHT_PATH_FGG, folder)
     print(f">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>{folder}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
 
     for idx, model in enumerate(sorted(os.listdir(lr_folder))):
 
         if model.endswith('csv') or model.endswith('txt'):
             continue
-        if model not in ['fge-0.pt', 'fge-1.pt', 'fge-5.pt', 'fge-9.pt', 'fge-13.pt', 'fge-17.pt', 'fge--1.pt']:
+        if model not in ['fgg-0.pt', 'fgg-1.pt', 'fgg-5.pt', 'fgg-9.pt', 'fgg-13.pt', 'fgg-17.pt']:
             continue
         print(f">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>{model}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
         checkpoint = torch.load(os.path.join(lr_folder, model), map_location=DEVICE)
@@ -177,12 +177,12 @@ greedy_model, best_ingredients = greedy_souping(state_dicts, val_results, MODEL,
 greedy_model.to(DEVICE)
 print('VAL INGREDIENTS',best_ingredients)
 greedy_test_loss, greedy_test_acc, greedy_test_f1, greedy_test_recall, greedy_test_kappa, greedy_test_auc = val_step(greedy_model, test_loader, train_loader, loss, DEVICE, CLASSIFICATION)
-test_results = list(results_test_df[test_sort_by])
-test_models = list(results_test_df["Model Name"])
-greedy_model_test, best_ingredients_test = greedy_souping(state_dicts, test_results, MODEL, NUM_CLASSES, test_loader, train_loader, loss, DEVICE, CLASSIFICATION, test_sort_by, test_models)
-print('TEST INGREDIENTS', best_ingredients_test)
-greedy_model_test.to(DEVICE)
-greedy_test_loss_test, greedy_test_acc_test, greedy_test_f1_test, greedy_test_recall_test, greedy_test_kappa_test, greedy_test_auc_test = val_step(greedy_model_test, test_loader, train_loader, loss, DEVICE, CLASSIFICATION)
+# test_results = list(results_test_df[test_sort_by])
+# test_models = list(results_test_df["Model Name"])
+# greedy_model_test, best_ingredients_test = greedy_souping(state_dicts, test_results, MODEL, NUM_CLASSES, test_loader, train_loader, loss, DEVICE, CLASSIFICATION, test_sort_by, test_models)
+# print('TEST INGREDIENTS', best_ingredients_test)
+# greedy_model_test.to(DEVICE)
+# greedy_test_loss_test, greedy_test_acc_test, greedy_test_f1_test, greedy_test_recall_test, greedy_test_kappa_test, greedy_test_auc_test = val_step(greedy_model_test, test_loader, train_loader, loss, DEVICE, CLASSIFICATION)
 
 #saving results in table
 print("Creating table ...")
