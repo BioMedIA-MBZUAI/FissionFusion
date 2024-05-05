@@ -254,7 +254,6 @@ greedy_model.to(DEVICE)
 print('VAL INGREDIENTS',best_ingredients)
 greedy_test_loss, greedy_test_acc, greedy_test_f1, greedy_test_recall, greedy_test_kappa, greedy_test_auc = val_step(greedy_model, test_loader, train_loader, loss, DEVICE, CLASSIFICATION)
 
-new_row =  pd.DataFrame({'Model Name': 'GoG', 'Test Accuracy': greedy_test_acc, 'Test F1': greedy_test_f1, 'Test Recall': greedy_test_recall, 'Test Kappa': greedy_test_kappa,'Test AUC': greedy_test_auc}, ignore_index=True)
-final_test_df = final_test_df._append(new_row, ignore_index=True)
+final_test_df = final_test_df._append({'Model Name': 'GoG', 'Test Accuracy': greedy_test_acc, 'Test F1': greedy_test_f1, 'Test Recall': greedy_test_recall, 'Test Kappa': greedy_test_kappa,'Test AUC': greedy_test_auc}, ignore_index=True)
 
 final_test_df.to_csv(os.path.join(test_save_path, "HS_results.csv"), index=False)
