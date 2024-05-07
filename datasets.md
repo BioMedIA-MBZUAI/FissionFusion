@@ -60,18 +60,18 @@ Download the APTOS dataset from [here](https://www.kaggle.com/competitions/aptos
 
 4. EyePACS
 
-Download the EyePACS dataset from [here](https://www.kaggle.com/competitions/aptos2019-blindness-detection). The split is available in [here](./dataset/224_data/DR/eyepacs/eyepacs_dataset_splits.csv).
+Download the EyePACS dataset from [here](https://www.kaggle.com/datasets/mariaherrerot/eyepacspreprocess). The split is available in [here](./dataset/224_data/DR/eyepacs/eyepacs_dataset_splits.csv).
 
 
     224_data/
     ├── DR/
-        ├── aptos/
+        ├── eyepacs/
             ├── 0/
             ├── 1/
             ├── 2/
             ├── 3/
             ├── 4/
-            ├── aptos_dataset_splits.csv 
+            ├── eyepacs_dataset_splits.csv 
 
 
 5.  HAM10000
