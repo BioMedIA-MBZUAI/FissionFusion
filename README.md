@@ -60,6 +60,12 @@ Welcome to the repository for "FissionFusion: Fast Geometric Generation and Hier
     pip install -r requirements.txt
     ```
 ---
+
+## Datasets
+Details about the datasets currently supported, data directory structure for the datasets is available [here](datasets.md)
+
+---
+
 ## Training 
 
 1. ### Grid Search Experiments:
@@ -110,9 +116,7 @@ Welcome to the repository for "FissionFusion: Fast Geometric Generation and Hier
     ```
 
 
----
-## Datasets
-Details about the datasets currently supported, data directory structure for the datasets is available [here](datasets.md)
+
 
 ---
 ## Citation
