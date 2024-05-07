@@ -26,6 +26,8 @@ The dataset directory looks as follows
 1. CIFAR-10
 
 For CIFAR-10, automatic dataset download is enabled and it gets downloaded into [dataset](./dataset). The split file is [cifar1098_idx.npy](./dataset/cifar/cifar1098_idxs.npy). After downloading the dataset, the data directory looks like this
+
+
     cifar/
     ├── cifar-10-batches-py
     ├── cifar-10-python.tar.gz
@@ -35,6 +37,8 @@ For CIFAR-10, automatic dataset download is enabled and it gets downloaded into 
 2. CIFAR-100
 
 For CIFAR-100, automatic dataset download is enabled and it gets downloaded into [dataset](./dataset). The split file is [cifar1098_idx.npy](./dataset/cifar/cifar1098_idxs.npy). After downloading the dataset, the data directory looks like this
+
+
     cifar/
     ├── cifar-100-python
     ├── cifar-100-python.tar.gz
