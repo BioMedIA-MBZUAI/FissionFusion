@@ -64,7 +64,7 @@ Download the EyePACS dataset from [here](https://www.kaggle.com/competitions/apt
 
     224_data/
     ├── DR/
-        ├── eyepacs
+        ├── eyepacs/
             ├── 0/
             ├── 1/
             ├── 2/
