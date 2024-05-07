@@ -91,8 +91,16 @@ Download the APTOS dataset from [here](https://challenge.isic-archive.com/data/#
 
 6. RSNAPneumonia
 
+Download the RSNA Pneumonia Detection dataset from [here](https://www.kaggle.com/c/rsna-pneumonia-detection-challenge/data). As the test set groud truth is not available, we use the training dataset and split it into train/val/test. Rename the train folder to train_v3.
 
-
+    rsna18/
+        ├── csv/
+            ├── final_dataset_wo_not_normal_cases.csv
+            ├── stage_2_sample_submission.csv
+            ├── stage_2_detailed_class_info.csv            
+            ├── stage_2_train_labels.csv
+        ├── test/
+        ├── train_v3/
 
 
 7. CheXpert
