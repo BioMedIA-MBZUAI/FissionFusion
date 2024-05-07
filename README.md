@@ -109,7 +109,8 @@ Details about the datasets currently supported, where to download the datasets a
     python fgg_model_souping_test.py --config './configs/fgg_model_souping_test.yaml'
     ```
 
-    c) To test the Hierarchical Souping (HS) approach, run
+2. ### Hierarchical Souping (GoU and GoG):
+    To run the hierarchical souping approach, execute
 
     ```bash
     python hierarchical_souping.py --config './configs/hierarchical_souping.yaml'
