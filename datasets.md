@@ -64,13 +64,13 @@ Download the EyePACS dataset from [here](https://www.kaggle.com/competitions/apt
 
     224_data/
     ├── DR/
-        ├── eyepacs/
+        ├── aptos/
             ├── 0/
             ├── 1/
             ├── 2/
             ├── 3/
             ├── 4/
-            ├── eyepacs_dataset_splits.csv  
+            ├── aptos_dataset_splits.csv 
 
 
 5.  HAM10000
