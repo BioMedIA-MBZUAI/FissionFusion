@@ -59,6 +59,7 @@ Download the APTOS dataset from [here](https://www.kaggle.com/competitions/aptos
             ├── aptos_dataset_splits.csv
 
 4. EyePACS
+
 Download the EyePACS dataset from [here](https://www.kaggle.com/competitions/aptos2019-blindness-detection). The split is available in [here](./dataset/224_data/DR/eyepacs/eyepacs_dataset_splits.csv).
 
 
