@@ -75,6 +75,7 @@ Download the EyePACS dataset from [here](https://www.kaggle.com/datasets/mariahe
 
 
 5.  HAM10000
+
 Download the APTOS dataset from [here](https://challenge.isic-archive.com/data/#2018).
 
 
@@ -93,7 +94,9 @@ Download the APTOS dataset from [here](https://challenge.isic-archive.com/data/#
 
 
 
+
 7. CheXpert
+
 Download the CheXpert dataset from [here](https://stanfordmlgroup.github.io/competitions/chexpert/). Furthermore, resize the images to 224x224.
 
     CheXpert-v1.0_224/
