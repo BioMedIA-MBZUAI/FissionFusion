@@ -126,7 +126,7 @@ If you use **Fission-Fusion** or our repository in your research, please cite ou
 *:
 
 ```
-@misc{sanjeev2024fissionfusion,
+@article{sanjeev2024fissionfusion,
       title={FissionFusion: Fast Geometric Generation and Hierarchical Souping for Medical Image Analysis}, 
       author={Santosh Sanjeev and Nuren Zhaksylyk and Ibrahim Almakky and Anees Ur Rehman Hashmi and Mohammad Areeb Qazi and Mohammad Yaqub},
       year={2024},
