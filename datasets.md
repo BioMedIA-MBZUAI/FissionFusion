@@ -7,7 +7,6 @@ The currently supported datasets are
 4. EyePacs
 5. HAM10000
 6. RSNAPneumonia
-7. FGVC-Aircrafts
 
 and the dataset classes are available at [dataset.py](dataset.py).
 
