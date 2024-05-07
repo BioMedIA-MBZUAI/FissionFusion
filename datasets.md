@@ -45,7 +45,7 @@ For CIFAR-100, automatic dataset download is enabled and it gets downloaded into
 
 3. APTOS
 
-Download the APTOS dataset from [here](https://www.kaggle.com/competitions/aptos2019-blindness-detection). The split is available in [here]().
+Download the APTOS dataset from [here](https://www.kaggle.com/competitions/aptos2019-blindness-detection). The split is available in [here](./dataset/224_data/DR/aptos/aptos_dataset_splits.csv).
 
     224_data/
     ├── DR/
@@ -58,7 +58,7 @@ Download the APTOS dataset from [here](https://www.kaggle.com/competitions/aptos
             ├── aptos_dataset_splits.csv
 
 4. EyePACS
-Download the APTOS dataset from [here](https://www.kaggle.com/competitions/aptos2019-blindness-detection). The split is available in [here]().
+Download the EyePACS dataset from [here](https://www.kaggle.com/competitions/aptos2019-blindness-detection). The split is available in [here](./dataset/224_data/DR/eyepacs/eyepacs_dataset_splits.csv).
 
     224_data/
     ├── DR/
