@@ -47,6 +47,7 @@ For CIFAR-100, automatic dataset download is enabled and it gets downloaded into
 
 Download the APTOS dataset from [here](https://www.kaggle.com/competitions/aptos2019-blindness-detection). The split is available in [here](./dataset/224_data/DR/aptos/aptos_dataset_splits.csv).
 
+
     224_data/
     ├── DR/
         ├── aptos/
@@ -59,6 +60,7 @@ Download the APTOS dataset from [here](https://www.kaggle.com/competitions/aptos
 
 4. EyePACS
 Download the EyePACS dataset from [here](https://www.kaggle.com/competitions/aptos2019-blindness-detection). The split is available in [here](./dataset/224_data/DR/eyepacs/eyepacs_dataset_splits.csv).
+
 
     224_data/
     ├── DR/
@@ -74,6 +76,7 @@ Download the EyePACS dataset from [here](https://www.kaggle.com/competitions/apt
 5.  HAM10000
 Download the APTOS dataset from [here](https://challenge.isic-archive.com/data/#2018).
 
+
     ISIC/
         ├── ISIC2018_Task3_Training_Input/
         ├── ISIC2018_Task3_Validation_Input/
@@ -82,6 +85,7 @@ Download the APTOS dataset from [here](https://challenge.isic-archive.com/data/#
         ├── ISIC2018_Task3_Validation_GroundTruth/
         ├── ISIC2018_Task3_Test_GroundTruth/
         ├── ISIC2018_Task3_Training_LesionGroupings.csv
+
 
 6. RSNAPneumonia
 

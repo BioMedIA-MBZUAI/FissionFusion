@@ -62,7 +62,7 @@ Welcome to the repository for "FissionFusion: Fast Geometric Generation and Hier
 ---
 
 ## Datasets
-Details about the datasets currently supported, data directory structure for the datasets is available [here](datasets.md).
+Details about the datasets currently supported, where to download the datasets and the data directory structure is available [here](datasets.md).
 
 ---
 
