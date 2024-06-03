@@ -137,7 +137,7 @@ If you use **Fission-Fusion** or our repository in your research, please cite ou
 ```
 ---
 ## References
-Our work is inspired from
+Our work is inspired from 
 
 - [Model Soups](https://proceedings.mlr.press/v162/wortsman22a/wortsman22a.pdf)
 - [DNN Mode Connectivity](https://arxiv.org/abs/1802.10026)
