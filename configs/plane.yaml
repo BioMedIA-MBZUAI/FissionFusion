@@ -19,9 +19,9 @@ paths: &PATH_OPTIONS
   - &CHEXPERT_PATH /share/nvmedata/santosh/""/share/nvmedata/santosh/""/share/nvmedata/santosh/""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/train.csv""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/valid.csv""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/test_labels_v2.csv
 
 
-WEIGHT_PATH: "/share/nvmedata/santosh/model_soups/runs/san_final_hyp_models/san-finetune/chexpert_final_hyp/deits_imagenet/2024-01-21_22-05-48/"
+WEIGHT_PATH: "/share/nvmedata/santosh/model_soups/runs/san_final_hyp_models/san-finetune/chexpert_final_hyp/deitb_imagenet/2024-01-21_22-05-48/"
 PRETRAINING: ImageNet
-MODEL: DeiT-S
+MODEL: DeiT-B
 CLASSIFICATION: MultiLabel
 TASK: Classification
 DATASET: *CHEXPERT

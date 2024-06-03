@@ -71,7 +71,7 @@ if not os.path.exists(f'./plots_v2/linear_connectivity/{DATASET}/seed_wrt_aug/')
 
 if not os.path.exists(f'./plots_v2/linear_connectivity/{DATASET}/seed_wrt_lr/'):
     os.makedirs(f'./plots_v2/linear_connectivity/{DATASET}/seed_wrt_lr/')
-df = pd.read_csv(f'/home/santoshsanjeev/model_soups/noodles/test/{DATASET}/DeiT-S/VAL_RESULTS.csv')
+df = pd.read_csv(f'/home/santoshsanjeev/model_soups/noodles/test/{DATASET}/DeiT-B/VAL_RESULTS.csv')
 
 def get_xy(point, origin, vector_x, vector_y):
     return np.array([np.dot(point - origin, vector_x), np.dot(point - origin, vector_y)])
@@ -146,7 +146,7 @@ print(vary_seed_wrt_lr)
 #     for inner_list in value_dict.values():
 #         vary_seed_list.append(inner_list)
 # print(vary_seed_list)
-# # initial_model_path = '/home/santosh.sanjeev/Projects/model-soups/noodles/runs/san_final_hyp_models/san-initial_models/aptos_final_hyp/deitS_imagenet/2024-01-10_02-40-01/best_checkpoint.pth'
+# # initial_model_path = '/home/santosh.sanjeev/Projects/model-soups/noodles/runs/san_final_hyp_models/san-initial_models/aptos_final_hyp/deitB_imagenet/2024-01-10_02-40-01/best_checkpoint.pth'
 
 
 
@@ -300,7 +300,7 @@ for augmentation, lr_dict in vary_seed_wrt_aug.items():
 # #     for inner_list in value_dict.values():
 # #         vary_seed_list.append(inner_list)
 # # print(vary_seed_list)
-# # # initial_model_path = '/home/santosh.sanjeev/Projects/model-soups/noodles/runs/san_final_hyp_models/san-initial_models/aptos_final_hyp/deitS_imagenet/2024-01-10_02-40-01/best_checkpoint.pth'
+# # # initial_model_path = '/home/santosh.sanjeev/Projects/model-soups/noodles/runs/san_final_hyp_models/san-initial_models/aptos_final_hyp/deitB_imagenet/2024-01-10_02-40-01/best_checkpoint.pth'
 
 
 

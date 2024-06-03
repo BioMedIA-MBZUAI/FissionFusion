@@ -50,7 +50,7 @@ paths: &PATH_OPTIONS
 # IMPLEMENTATION SECTION #
 ######CHANGE ONLY THIS#######
 TASK: Classification
-MODEL: ResNet50 #change the model here (DeiT-S, ResNet50)
+MODEL: ResNet50 #change the model here (DeiT-B, ResNet50)
 CLASSIFICATION: MultiClass #if chexpert change to MultiLabel
 PRETRAINING: ImageNet
 LOSS: CrossEntropyLoss #if CheXpert change to BCEWithLogitsLoss()

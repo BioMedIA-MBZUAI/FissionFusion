@@ -18,9 +18,9 @@ paths: &PATH_OPTIONS
   - &CHEXPERT_PATH /share/nvmedata/santosh/""/share/nvmedata/santosh/""/share/nvmedata/santosh/""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/train.csv""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/valid.csv""/share/nvmedata/santosh/CheXpert-v1.0_224/csv/test_labels_v2.csv
 
 
-WEIGHT_PATH: "/share/nvmedata/santosh/model_soups_models/cifar100_final_hyp/deit-s/2024-01-18_19-46-03/"
+WEIGHT_PATH: "/share/nvmedata/santosh/model_soups_models/cifar100_final_hyp/deit-b/2024-01-18_19-46-03/"
 PRETRAINING: ImageNet
-MODEL: DeiT-S
+MODEL: DeiT-B
 CLASSIFICATION: MultiClass
 TASK: Classification
 DATASET: *CIFAR100

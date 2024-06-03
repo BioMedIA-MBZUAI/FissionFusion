@@ -605,7 +605,7 @@ def get_convnext_tiny(pretrained=False):
 
     return model
     
-def get_deitS(task, pretrained=False,num_classes=10):
+def get_deitB(task, pretrained=False,num_classes=10):
     if task == 'Classification':
         if pretrained:
             model = timm.create_model('deit_base_patch16_224.fb_in1k',pretrained=True)
@@ -800,8 +800,8 @@ def get_model(model_name, task = 'Classification', pretrained=False, num_classes
         return get_squeezenet1_1(pretrained)
     elif model_name == "ConvNeXtTiny":
         return get_convnext_tiny(pretrained)
-    elif model_name == "DeiT-S":
-        return get_deitS(task, pretrained, num_classes)
+    elif model_name == "DeiT-B":
+        return get_deitB(task, pretrained, num_classes)
     elif model_name == "MIMIC-DenseNet121":
         return get_medical_densnet121(pretrained, num_classes)
     elif model_name == "DenseNet121":

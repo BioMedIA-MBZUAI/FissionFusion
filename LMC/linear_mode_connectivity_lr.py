@@ -71,7 +71,7 @@ train_loader, val_loader, test_loader = get_dataset(DATASET, PATHS, "Minimal", P
 
 # if not os.path.exists(f'./plots_v2/linear_connectivity/{DATASET}/lr_wrt_lr/'):
 #     os.makedirs(f'./plots_v2/linear_connectivity/{DATASET}/lr_wrt_lr/')
-df = pd.read_csv(f'/home/santoshsanjeev/model_soups/noodles/test/{DATASET}/DeiT-S/VAL_RESULTS.csv')
+df = pd.read_csv(f'/home/santoshsanjeev/model_soups/noodles/test/{DATASET}/DeiT-B/VAL_RESULTS.csv')
 
 def get_xy(point, origin, vector_x, vector_y):
     return np.array([np.dot(point - origin, vector_x), np.dot(point - origin, vector_y)])
